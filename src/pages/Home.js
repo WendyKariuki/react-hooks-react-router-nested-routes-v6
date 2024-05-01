@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 
 function Home() {
   const [users, setUsers] = useState([]);
+  const userList = users.map(user => <UserCard key={user.id} user={user}/>);
 
   useEffect(() =>{
     fetch("http://localhost:4000/users")
@@ -11,11 +12,6 @@ function Home() {
       .then(data => setUsers(data))
       .catch(error => console.error(error));
   }, []);
-  
-  const userList = users.map(user =>{
-    return <UserCard key={user.id} user={user}/>;
-  });
-
   return (
     <>
       <header>
